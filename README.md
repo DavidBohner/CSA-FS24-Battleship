@@ -8,5 +8,5 @@
 - [ ] Player Target Logic
 - [ ] Computer Target Logic
 - [ ] Gamemanager
-  - Integrate Explorer Board
-  - Gameflow
+  - [ ] Integrate Explorer Board
+  - [ ] Gameflow
