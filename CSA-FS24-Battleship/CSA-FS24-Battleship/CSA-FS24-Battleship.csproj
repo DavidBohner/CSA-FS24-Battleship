@@ -8,4 +8,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="../Explorer700Library/Explorer700Library.csproj" />
+    </ItemGroup>
+
 </Project>
