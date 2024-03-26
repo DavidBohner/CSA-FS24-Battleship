@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices.JavaScript;
+
 namespace CSA_FS24_Battleship.DataModel.Ships;
 
 public class ShipSegment
@@ -10,5 +12,10 @@ public class ShipSegment
     {
         X = x;
         Y = y;
+    }
+
+    public override string ToString()
+    {
+        return ("Position --> X: " + X + " & Y: " + Y + " & HasBeenHit: " + HasBeenHit.ToString());
     }
 }
