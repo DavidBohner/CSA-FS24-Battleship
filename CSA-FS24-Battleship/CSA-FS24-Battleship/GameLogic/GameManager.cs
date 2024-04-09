@@ -1,4 +1,5 @@
 using CSA_FS24_Battleship.DataModel;
+using CSA_FS24_Battleship.ExplorerIO;
 
 namespace CSA_FS24_Battleship.GameLogic;
 
@@ -7,6 +8,8 @@ public class GameManager
     private static readonly int GameSize = 6;
     private GameBoard ComputerBoard = new(GameSize);
     private GameBoard PlayerBoard = new(GameSize);
+
+    private Display Display = new();
 
     public Winner GameTurn()
     {
@@ -33,6 +36,8 @@ public class GameManager
     
     public void GameSession()
     {
+        //tmp
+        Display.DrawGameField();
         while (true)
         {
             var result = GameTurn();

@@ -6,6 +6,8 @@
         <RootNamespace>CSA_FS24_Battleship</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <NoWarn>CA1416</NoWarn>
+        <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     </PropertyGroup>
 
     <ItemGroup>
