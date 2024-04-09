@@ -2,11 +2,12 @@
 
 ## Roadmap
 
-- [ ] Random Ship Placer
-- [ ] Gameboardfield
+- [x] Random Ship Placer
+  - [x] Validity Checker
+- [x] Gameboardfield
 - [ ] Implement Explorer Board Library
-- [ ] Player Target Logic
-- [ ] Computer Target Logic
+- [x] Player Target Logic
+- [x] Computer Target Logic
 - [ ] Gamemanager
   - [ ] Integrate Explorer Board
-  - [ ] Gameflow
+  - [x] Gameflow

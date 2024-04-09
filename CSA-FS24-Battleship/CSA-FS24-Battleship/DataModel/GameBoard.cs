@@ -31,23 +31,71 @@ public class GameBoard
         foreach (var segment in from ship in Ships from segment in ship.Segments where segment.X == x && segment.Y == y select segment)
         {
             segment.HasBeenHit = true;
-            return true;
         }
 
-        return false;
+        return IsGameOver();
+    }
+
+    public bool IsGameOver()
+    {
+        foreach (var ship in Ships)
+        {
+            if (!ship.HasBeenSunk())
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public bool IsValid()
+    {
+        // Bounds check
+        foreach (var ship in Ships)
+        {
+            if (!ship.IsValid(Size))
+            {
+                Console.WriteLine($"{ship.GetType()} failed bounds check.");
+                return false;
+            }
+        }
+        
+        // Check for overlapping segments
+        foreach (var ship in Ships)
+        {
+            foreach (var segment in ship.Segments)
+            {
+                var overlappingSegment = Ships
+                    .Where(otherShip => ship != otherShip)
+                    .SelectMany(otherShip => otherShip.Segments)
+                    .FirstOrDefault(otherSegment => otherSegment.X == segment.X && otherSegment.Y == segment.Y);
+
+                if (overlappingSegment != null)
+                {
+                    Console.WriteLine($"Segment overlap at {segment.X}, {segment.Y} between {ship.GetType()} and {overlappingSegment.GetType()}");
+                    return false;
+                }
+            }
+        }
+        Console.WriteLine("Validity Check succeeded!");
+        return true;
     }
 
     private void CreateShips()
     {
-        Ships = new ();
-        Ships.Add(new Frigate(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
-        Ships.Add(new Cruiser(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
-        Ships.Add(new Destroyer(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
+        do
+        {
+            Ships = new();
+            Ships.Add(new Frigate(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
+            Ships.Add(new Destroyer(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
+            Ships.Add(new Cruiser(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
+        } while (!IsValid());
     }
     
     private int GenerateRandomCoordinate()
     {
-        return new Random().Next(Size + 1);
+        return new Random().Next(Size);
     }
     
     private bool GenerateRandomAlignment()

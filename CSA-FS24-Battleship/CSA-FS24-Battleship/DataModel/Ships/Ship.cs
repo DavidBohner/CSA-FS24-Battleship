@@ -8,15 +8,30 @@ public abstract class Ship
     
     public Ship() { }
     public Ship(int x, int y, bool isVertical) { }
-    
-    public bool IsValid()
+
+    public bool HasBeenSunk()
     {
-        // TODO: Data validity checks
-        /*
-         * 1. All of its segments are adjoining
-         * 2. None of its segments are overlapping
-         * 3. None of its segments are out-of-bounds
-         */
+        foreach (var segment in Segments)
+        {
+            if (!segment.HasBeenHit)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+    public bool IsValid(int size)
+    {
+        // Check that none of its segments are out-of-bounds
+        foreach (var segment in Segments)
+        {
+            if (!segment.IsValid(size))
+            {
+                return false;
+            }
+        }
         return true;
     }
 }

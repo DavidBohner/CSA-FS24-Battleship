@@ -18,4 +18,9 @@ public class ShipSegment
     {
         return ("Position --> X: " + X + " & Y: " + Y + " & HasBeenHit: " + HasBeenHit.ToString());
     }
+
+    public bool IsValid(int size)
+    {
+        return X <= size && Y <= size;
+    }
 }
