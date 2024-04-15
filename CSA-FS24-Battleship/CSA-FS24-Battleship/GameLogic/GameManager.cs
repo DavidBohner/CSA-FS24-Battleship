@@ -1,5 +1,6 @@
 using CSA_FS24_Battleship.DataModel;
-using CSA_FS24_Battleship.ExplorerIO;
+using Explorer700Library;
+using Display = CSA_FS24_Battleship.ExplorerIO.Display;
 
 namespace CSA_FS24_Battleship.GameLogic;
 
@@ -9,12 +10,33 @@ public class GameManager
     private GameBoard ComputerBoard = new(GameSize);
     private GameBoard PlayerBoard = new(GameSize);
 
-    private Display Display = new();
+    private static Explorer700 _explorer700;
+    private Display Display;
+
+    public GameManager()
+    {
+        _explorer700 = new();
+        Display = new(_explorer700);
+    }
+    
+    
+    // cursor start
+    int col = 0;
+    int row = 0;
 
     public Winner GameTurn()
     {
         // Player turn
-        if (ComputerBoard.Target(1, 1))
+        bool madeMove = false;
+        while (!madeMove)
+        {
+            madeMove = MakeMove(ComputerBoard);
+        }
+
+        bool playerWon = ComputerBoard.Target(col, row);
+        Display.DrawGameField(ComputerBoard, col, row);
+
+        if (playerWon)
         {
             return Winner.Player;
         }
@@ -36,16 +58,59 @@ public class GameManager
     
     public void GameSession()
     {
-        //tmp
-        Display.DrawGameField();
+        Display.DrawGameField(ComputerBoard, col, row);
         while (true)
         {
             var result = GameTurn();
             if (result != Winner.Undecided)
             {
                 Console.WriteLine($"The winner is {result}");
-                return;
+                Display.DrawMessage($"The winner is {result}");
+                break;
             }
         }
+    }
+    
+    private bool MakeMove(GameBoard board)
+    {
+        bool moveMade = false;
+        bool changed = false;
+        Keys keys = _explorer700.Joystick.Keys;
+        
+        switch (keys)
+        {
+            case Keys.Left when row > 0:
+                row--;
+                changed = true;
+                break;
+            case Keys.Right when row < 6:
+                row++;
+                changed = true;
+                break;
+            case Keys.Up when col > 0:
+                col--;
+                changed = true;
+                break;
+            case Keys.Down when col < 6:
+                col++;
+                changed = true;
+                break;
+            case Keys.Center:// when CheckForValidMove(row, col, board, currentPlayer):
+                // Valid move, place sign on board and switch to player
+                // ComputerBoard.Target(col, row);
+                changed = moveMade = true;
+                break;
+        }
+    
+        // Update the display
+        if (changed)
+        {
+            Display.DrawGameField(board, col, row);
+        
+            //try to prevent double input
+            Thread.Sleep(200);
+        }
+    
+        return moveMade;
     }
 }

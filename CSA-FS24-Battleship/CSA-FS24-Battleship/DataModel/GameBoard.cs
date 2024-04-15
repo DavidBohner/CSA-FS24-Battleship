@@ -91,6 +91,15 @@ public class GameBoard
             Ships.Add(new Destroyer(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
             Ships.Add(new Cruiser(GenerateRandomCoordinate(), GenerateRandomCoordinate(), GenerateRandomAlignment()));
         } while (!IsValid());
+
+        foreach (var ship in Ships)
+        {
+            foreach (var segment in ship.Segments)
+            {
+                Fields[segment.X, segment.Y].ShipSegment = segment;
+                Fields[segment.X, segment.Y].Ship = ship;
+            }
+        }
     }
     
     private int GenerateRandomCoordinate()

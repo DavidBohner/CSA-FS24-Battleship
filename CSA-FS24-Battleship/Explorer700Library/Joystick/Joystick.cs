@@ -44,8 +44,9 @@ namespace Explorer700Library
         {
             get
             {
-                Keys k = Keys.NoKey;
-                // ToDo
+                byte data = Pcf8574.Read();
+                data = (byte)((~data) & 0x0F);
+                Keys k = (Keys)data; // Low Active
                 if (!(bool)GpioController.Read(centerPin)) k |= Keys.Center;
                 return k;
             }
@@ -62,7 +63,7 @@ namespace Explorer700Library
             Keys oldState = Keys;
             while (true)
             {
-                // ToDo
+                // Brauchen wir momentan nicht :)
                 Thread.Sleep(50);
             }
         }
