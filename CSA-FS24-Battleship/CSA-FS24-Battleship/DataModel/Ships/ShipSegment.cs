@@ -21,6 +21,6 @@ public class ShipSegment
 
     public bool IsValid(int size)
     {
-        return X <= size && Y <= size;
+        return X < size && Y < size;
     }
 }

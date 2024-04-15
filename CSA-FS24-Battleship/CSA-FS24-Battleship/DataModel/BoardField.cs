@@ -12,6 +12,10 @@ public class BoardField
     {
         if (ShipSegment?.HasBeenHit ?? false)
         {
+            if (Ship!.HasBeenSunk())
+            {
+                return "#";
+            }
             return "O";
         }
         else if (WasShot)

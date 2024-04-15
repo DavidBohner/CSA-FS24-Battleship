@@ -63,7 +63,13 @@ namespace Explorer700Library
             Keys oldState = Keys;
             while (true)
             {
-                // Brauchen wir momentan nicht :)
+                Keys newState = Keys;
+                if (newState != oldState)
+                {
+                    JoystickChanged?.Invoke(this, new KeyEventArgs(newState));
+                    oldState = newState;
+                }
+                
                 Thread.Sleep(50);
             }
         }

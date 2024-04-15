@@ -65,7 +65,7 @@ public class GameManager
             if (result != Winner.Undecided)
             {
                 Console.WriteLine($"The winner is {result}");
-                Display.DrawMessage($"The winner is {result}");
+                Display.DrawMessage(result == Winner.Player ? "Win!" : "Lose");
                 break;
             }
         }
