@@ -9,8 +9,7 @@ class Program
     private static Explorer700 _explorer700 = new();
     static void Main(string[] args)
     {
-        bool keepRunning = true;
-        while (keepRunning)
+        while (true)
         {
             Console.WriteLine("Battleship game started...");
 
@@ -29,9 +28,7 @@ class Program
                         Thread.Sleep(500); // To avoid instantly firing at 0,0.
                         break;
                     default:
-                        keepRunning = false;
-                        goAgain = true;
-                        break;
+                        return;
                 }
             }
         }
