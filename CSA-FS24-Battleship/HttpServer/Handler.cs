@@ -27,7 +27,7 @@ public class Handler
             string request = sr.ReadLine();
             Console.WriteLine("Request: {0}", request);
 
-            //check if request ist GET else abort
+            //check if request is GET else abort
             if (request == null || !request.Contains("GET")) return;
             
             //check route
@@ -83,7 +83,6 @@ public class Handler
         sw.WriteLine("Content-type: text/plain");
         sw.WriteLine(); // Empty line
         sw.WriteLine(theData);
-        //flusch benötigt das alles beim empfänger ankommt
         sw.Flush();
 
         Console.WriteLine("File gesendet");
