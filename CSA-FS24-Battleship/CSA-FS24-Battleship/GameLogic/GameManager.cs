@@ -23,6 +23,7 @@ public class GameManager
     // cursor start
     int col = 0;
     int row = 0;
+    
 
     public Winner GameTurn()
     {
@@ -76,29 +77,35 @@ public class GameManager
         bool moveMade = false;
         bool changed = false;
         Keys keys = _explorer700.Joystick.Keys;
+        string key = "no key pressed";
         
         switch (keys)
         {
             case Keys.Left when row > 0:
                 row--;
                 changed = true;
+                key = "Left";
                 break;
             case Keys.Right when row < 6:
                 row++;
                 changed = true;
+                key = "Right";
                 break;
             case Keys.Up when col > 0:
                 col--;
                 changed = true;
+                key = "Up";
                 break;
             case Keys.Down when col < 6:
                 col++;
                 changed = true;
+                key = "Down";
                 break;
             case Keys.Center:// when CheckForValidMove(row, col, board, currentPlayer):
                 // Valid move, place sign on board and switch to player
                 // ComputerBoard.Target(col, row);
                 changed = moveMade = true;
+                key = "Center";
                 break;
         }
     
@@ -106,7 +113,14 @@ public class GameManager
         if (changed)
         {
             Display.DrawGameField(board, col, row);
-        
+            
+            string dataFile = "logs/data.txt";
+            string content = $"Joystick: {key}: {DateTime.Now:dd.MM.yy hh:mm:ss}";
+            using (StreamWriter sw = File.AppendText(dataFile))
+            {
+                sw.WriteLine(content);
+            }	
+            
             //try to prevent double input
             Thread.Sleep(200);
         }

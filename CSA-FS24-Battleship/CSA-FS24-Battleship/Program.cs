@@ -10,6 +10,11 @@ class Program
     static void Main(string[] args)
     {
         bool keepRunning = true;
+        if (!File.Exists("logs/data.txt"))
+        {
+            Directory.CreateDirectory("logs");
+            File.WriteAllText("logs/data.txt", "// Logs from Battleships - Team 01\n");
+        }
         while (keepRunning)
         {
             Console.WriteLine("Battleship game started...");
