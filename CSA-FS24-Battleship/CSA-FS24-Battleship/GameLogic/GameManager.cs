@@ -48,8 +48,21 @@ public class GameManager
             compX = new Random().Next(GameSize);
             compY = new Random().Next(GameSize);
         } while (PlayerBoard.Fields[compX, compY].WasShot);
-        Console.WriteLine($"Comp shot at {compX}, {compY}.");
-        if (PlayerBoard.Target(compX, compY))
+
+        var shotResult = PlayerBoard.Target(compX, compY);
+
+        var compResString = $"Comp shot at {compX}, {compY}";
+        if (PlayerBoard.Fields[compX, compY].Ship != null)
+        {
+            compResString += $" and hit {PlayerBoard.Fields[compX, compY].Ship!.GetType()}";
+            if (PlayerBoard.Fields[compX, compY].Ship!.IsSunk)
+            {
+                compResString += ", sinking it.";
+            }
+        }
+        Console.WriteLine(compResString);
+        
+        if (shotResult)
         {
             return Winner.Computer;
         }

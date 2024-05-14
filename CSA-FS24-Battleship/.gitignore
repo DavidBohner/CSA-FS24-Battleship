@@ -1,7 +1,5 @@
-CSA-FS24-Battleship/bin/*
-CSA-FS24-Battleship/obj/*
-Explorer700Library/obj/*
-Explorer700Library/bin/*
+*/bin/*
+*/obj/*
 *.dll
 *.pdb
 *.cache

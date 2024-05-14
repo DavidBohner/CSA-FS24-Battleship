@@ -9,13 +9,12 @@ class Program
     private static Explorer700 _explorer700 = new();
     static void Main(string[] args)
     {
-        bool keepRunning = true;
         if (!File.Exists("logs/data.txt"))
         {
             Directory.CreateDirectory("logs");
             File.WriteAllText("logs/data.txt", "// Logs from Battleships - Team 01\n");
         }
-        while (keepRunning)
+        while (true)
         {
             Console.WriteLine("Battleship game started...");
 
@@ -34,9 +33,7 @@ class Program
                         Thread.Sleep(500); // To avoid instantly firing at 0,0.
                         break;
                     default:
-                        keepRunning = false;
-                        goAgain = true;
-                        break;
+                        return;
                 }
             }
         }

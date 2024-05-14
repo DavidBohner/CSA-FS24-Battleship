@@ -26,14 +26,12 @@ public class Display
 
         for (int i = 0; i < 6; i++)
         {
-            screen.DrawString(board.Fields[i, 0] + GetPosSymbol(currentCoords, (i, 0)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 0]), 0, i * 10);
-            screen.DrawString(board.Fields[i, 1] + GetPosSymbol(currentCoords, (i, 1)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 1]), 10, i * 10);
-            screen.DrawString(board.Fields[i, 2] + GetPosSymbol(currentCoords, (i, 2)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 2]), 20, i * 10);
-            screen.DrawString(board.Fields[i, 3] + GetPosSymbol(currentCoords, (i, 3)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 3]), 30, i * 10);
-            screen.DrawString(board.Fields[i, 4] + GetPosSymbol(currentCoords, (i, 4)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 4]), 40, i * 10);
-            screen.DrawString(board.Fields[i, 5] + GetPosSymbol(currentCoords, (i, 5)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, 5]), 50, i * 10);
+            for (int j = 0; j < 6; j++)
+            {
+                screen.DrawString(board.Fields[i, j] + GetPosSymbol(currentCoords, (i, j)), new Font(FontFamily.GenericSansSerif, 10), GetColor(board.Fields[i, j]), j * 10, i * 10);
+            }
         }
-
+        
         _explorer700.Display.Update();
     }
 
