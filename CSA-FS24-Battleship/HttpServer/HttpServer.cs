@@ -8,7 +8,7 @@ public class HttpServer {
         
         string filename = "data.txt";
         //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        string logDirectory = "logs/data.txt";
+        string logDirectory = "logs";
         
         //port should be higher then 1024
         TcpListener listen = new TcpListener(IPAddress.Any, 8080);
@@ -16,7 +16,7 @@ public class HttpServer {
         
         bool busy = true;
         while (busy) {
-            Console.WriteLine("Wait for connection on port {0}...",
+            Console.WriteLine("Wait for connection on port 8080...",
                 listen.LocalEndpoint);
             try {
                 new Thread(new Handler(listen.AcceptTcpClient(), filename, logDirectory).Do).Start();

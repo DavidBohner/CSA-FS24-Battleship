@@ -7,8 +7,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-      <Exec Command="cd &quot;$(TargetDir)&quot;&#xA;&quot;$(SolutionDir)\SecureUpload.exe&quot; . pi-home:netcore/$(ProjectName)" />
-    </Target>
-
 </Project>

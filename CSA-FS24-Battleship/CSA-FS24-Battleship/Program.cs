@@ -2,6 +2,7 @@
 using CSA_FS24_Battleship.DataModel.Ships;
 using CSA_FS24_Battleship.GameLogic;
 using Explorer700Library;
+using HttpServer;
 
 namespace CSA_FS24_Battleship;
 class Program
@@ -14,6 +15,9 @@ class Program
             Directory.CreateDirectory("logs");
             File.WriteAllText("logs/data.txt", "// Logs from Battleships - Team 01\n");
         }
+
+        Thread HttpThread = new Thread(HttpServer.HttpServer.StartServer);
+        HttpThread.Start();
         while (true)
         {
             Console.WriteLine("Battleship game started...");

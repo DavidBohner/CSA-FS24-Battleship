@@ -1,9 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSA-FS24-Battleship", "CSA-FS24-Battleship\CSA-FS24-Battleship.csproj", "{366A5A61-9338-4859-8572-8E0092234C6E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{95488295-D9FE-412C-B18E-C310D42854FD} = {95488295-D9FE-412C-B18E-C310D42854FD}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Explorer700Library", "Explorer700Library\Explorer700Library.csproj", "{769B7A6E-5F68-494E-9705-A33333A818FF}"
 EndProject
